@@ -1,0 +1,18 @@
+<!-- assemble_base / assemble_edit -->
+<library path="src">
+  <class name="AssembleEditor" type="robot_assembler_gui.assemble_editor.AssembleEditor" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A Python GUI plugin for controlling robot_assembler
+    </description>
+    <qtgui>
+      <group>
+        <label>Robot</label> <!-- TODO -->
+        <icon type="theme">folder</icon>
+        <statustip>Robot</statustip>
+      </group>
+      <label>AssembleEditor</label>
+      <icon type="theme">applications-other</icon>
+      <statustip>A Python GUI plugin for controlling robot_assembler</statustip>
+    </qtgui>
+  </class>
+</library>

@@ -1,0 +1,121 @@
+import os
+import time
+import threading
+
+import rospy
+import rospkg
+
+from std_msgs.msg import String
+from std_srvs.srv import Empty
+from jsk_rviz_plugins.srv import EusCommand
+
+from python_qt_binding import loadUi
+from python_qt_binding.QtCore import qDebug, Qt, qWarning, Signal
+from python_qt_binding.QtGui import QIcon
+from python_qt_binding.QtWidgets import QFileDialog, QGraphicsView, QWidget, QMessageBox
+
+from python_qt_binding.QtCore import QTimer
+
+class RAEditGraphicsView(QGraphicsView):
+
+    def __init__(self, parent=None):
+        super(RAEditGraphicsView, self).__init__()
+
+
+class RAEditWidget(QWidget):
+
+    """
+    """
+
+    def __init__(self, context):
+        """
+        :param context: plugin context hook to enable adding widgets as a ROS_GUI pane, ''PluginContext''
+        """
+        super(RAEditWidget, self).__init__()
+        rp = rospkg.RosPack()
+        ui_file = os.path.join(rp.get_path('robot_assembler_gui'), 'resources', 'edit.ui')
+        loadUi(ui_file, self, {'RAEditGraphicsView': RAEditGraphicsView})
+
+        self.send_button.clicked[bool].connect(self._handle_send_clicked)
+        self.rbutton0.clicked[bool].connect(self._r0_clicked)
+        self.rbutton1.clicked[bool].connect(self._r1_clicked)
+        self.rbutton2.clicked[bool].connect(self._r2_clicked)
+
+        self._counter = 0
+        self._mode = None
+        ## click rbutton0 ...
+        ## wait service ...
+        self.rbutton0.click()
+
+        self._text_lock = threading.Lock()
+        self._update_text_timer = QTimer(self)
+        self._update_text_timer.timeout.connect(self.updateText)
+        self._update_text_timer.start(20)
+
+        self._information_text_data = None
+        rospy.Subscriber("robot_assembler/print_information", String, self._callback_information)
+
+    def updateText(self):
+        if self._information_text_data == None:
+            return
+        self._text_lock.acquire()
+        for txt in self._information_text_data:
+            if txt == ':clear':
+                self.information_text.clear()
+            else:
+                self.information_text.append(txt)
+        self._information_text_data = None
+        self._text_lock.release()
+
+    def _callback_information(self, msg):
+        self._text_lock.acquire()
+        msg_data = msg.data.split('\n')
+        if self._information_text_data == None or msg_data[0] == ':clear':
+            self._information_text_data = msg_data
+        else:
+            self._information_text_data = self._information_text_data + msg_data
+        print (self._information_text_data)
+        self._text_lock.release()
+
+    def _handle_send_clicked(self, checked):
+        print('_handle_send_clicked: %s'%(checked))
+        self._counter = self._counter + 1
+
+        srv = rospy.ServiceProxy('robot_assembler/service_command', EusCommand)
+        #com = EusCommand()
+        #com.command = self.command_text.toPlainText()
+        try:
+            srv(self.command_text.toPlainText())
+        except rospy.ServiceException, e:
+            self.showError('Failed to call')
+
+    def _r0_clicked(self, checked):
+        ## fixed-point
+        print('r0 clicked')
+        self.command_name.setText('command(fixed point):')
+        self.buttonCallbackImpl('robot_assembler/select_fixedpoint')
+        self._mode = 'fixed-point'
+
+    def _r1_clicked(self, checked):
+        ## actuator
+        print('r1 clicked')
+        self.command_name.setText('command(actuator):')
+        self.buttonCallbackImpl('robot_assembler/select_actuator')
+        self._mode = 'actuator'
+
+    def _r2_clicked(self, checked):
+        ## parts / not implemented
+        print('r2 clicked')
+        self.command_name.setText('command(parts):')
+        self.buttonCallbackImpl('robot_assembler/select_parts')
+        self._mode = 'parts'
+
+    def buttonCallbackImpl(self, service_name):
+        srv = rospy.ServiceProxy(service_name, Empty)
+        try:
+            srv()
+        except rospy.ServiceException, e:
+            self.showError("Failed to call %s" % service_name)
+
+    def showError(self, message):
+        QMessageBox.about(self, "ERROR", message)
