@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(robot_assembler_gui)
 find_package(catkin REQUIRED)
-catkin_package()
+
 catkin_python_setup()
+catkin_package()
+
 
 install(FILES plugin.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(DIRECTORY launch resources
+install(DIRECTORY scripts resources
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
