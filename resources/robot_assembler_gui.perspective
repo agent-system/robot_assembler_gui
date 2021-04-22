@@ -1,0 +1,144 @@
+{
+  "keys": {},
+  "groups": {
+    "pluginmanager": {
+      "keys": {
+        "running-plugins": {
+          "type": "repr",
+          "repr": "{u'jsk_rqt_plugins/ServiceTabbedButtons': [1], u'robot_assembler_gui/AssembleEditor': [1], u'jsk_rqt_plugins/ServiceButtons': [1]}"
+        }
+      },
+      "groups": {
+        "plugin____DockWidgetContainer__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Container'"
+                }
+              },
+              "groups": {
+                "mainwindow": {
+                  "keys": {
+                    "geometry": {
+                      "type": "repr(QByteArray.hex)",
+                      "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000000000000001500000257000002760000000000000000ffffffffffffffff00000000000000000780')",
+                      "pretty-print": "         W v             "
+                    },
+                    "state": {
+                      "type": "repr(QByteArray.hex)",
+                      "repr(QByteArray.hex)": "QtCore.QByteArray('000000ff00000000fd00000002000000020000025800000262fc0100000001fb00000054006a0073006b005f007200710074005f0070006c007500670069006e0073005f005f00530065007200760069006300650054006100620062006500640042007500740074006f006e0073005f005f0031005f005f0100000000000002580000008800ffffff000000030000000000000000fc0100000001fb00000048006a0073006b005f007200710074005f0070006c007500670069006e0073005f005f00530065007200760069006300650042007500740074006f006e0073005f005f0031005f005f03000005c00000013f0000008a000002f6000000880000000000000004000000040000000800000008fc00000000')",
+                      "pretty-print": "                 Tjsk_rqt_plugins__ServiceTabbedButtons__1__                   Hjsk_rqt_plugins__ServiceButtons__1__                       "
+                    }
+                  },
+                  "groups": {}
+                }
+              }
+            }
+          }
+        },
+        "plugin__robot_assembler_gui__AssembleEditor__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__RAcontrol": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u'Form'"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__jsk_rqt_plugins__ServiceTabbedButtons__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u''"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__jsk_rqt_plugins__ServiceButtons__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__": {
+              "keys": {
+                "dockable": {
+                  "type": "repr",
+                  "repr": "True"
+                },
+                "parent": {
+                  "type": "repr",
+                  "repr": "None"
+                },
+                "dock_widget_title": {
+                  "type": "repr",
+                  "repr": "u''"
+                }
+              },
+              "groups": {}
+            }
+          }
+        }
+      }
+    },
+    "mainwindow": {
+      "keys": {
+        "geometry": {
+          "type": "repr(QByteArray.hex)",
+          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000001ac0000007e0000040300000344000001ac0000009a000004030000034400000000000000000780')",
+          "pretty-print": "       ~   D       D     "
+        },
+        "state": {
+          "type": "repr(QByteArray.hex)",
+          "repr(QByteArray.hex)": "QtCore.QByteArray('000000ff00000000fd00000001000000030000025800000295fc0100000002fc00000000000002d90000000000fffffffa000000000100000001fb00000030005f005f0044006f0063006b0057006900640067006500740043006f006e007400610069006e00650072005f005f00310100000000ffffffff0000000000000000fc00000000000002580000025800fffffffc0200000002fb000000620072006f0062006f0074005f0061007300730065006d0062006c00650072005f006700750069005f005f0041007300730065006d0062006c00650045006400690074006f0072005f005f0031005f005f005200410063006f006e00740072006f006c0100000000000000e1000000d300fffffffc000000e7000001ae0000001500fffffffc0100000002fb00000048006a0073006b005f007200710074005f0070006c007500670069006e0073005f005f00530065007200760069006300650042007500740074006f006e0073005f005f0031005f005f01000000000000011d0000008800fffffffb00000054006a0073006b005f007200710074005f0070006c007500670069006e0073005f005f00530065007200760069006300650054006100620062006500640042007500740074006f006e0073005f005f0031005f005f0100000123000001350000008800ffffff000002580000000000000004000000040000000800000008fc00000001000000030000000100000036004d0069006e0069006d0069007a006500640044006f0063006b00570069006400670065007400730054006f006f006c0062006100720000000000ffffffff0000000000000000')",
+          "pretty-print": "                                                                             brobot_assembler_gui__AssembleEditor__1__RAcontrol                                                                                                                 # 5     X                                                      "
+        }
+      },
+      "groups": {
+        "toolbar_areas": {
+          "keys": {
+            "MinimizedDockWidgetsToolbar": {
+              "type": "repr",
+              "repr": "8"
+            }
+          },
+          "groups": {}
+        }
+      }
+    }
+  }
+}
