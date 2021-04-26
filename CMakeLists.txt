@@ -10,7 +10,7 @@ install(FILES plugin.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(DIRECTORY scripts resources
+install(DIRECTORY scripts resources launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
