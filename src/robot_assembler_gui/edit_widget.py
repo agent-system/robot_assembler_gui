@@ -7,6 +7,7 @@ import rospkg
 
 from std_msgs.msg import String
 from std_srvs.srv import Empty
+from std_srvs.srv import SetBool
 from jsk_rviz_plugins.srv import EusCommand
 
 from python_qt_binding import loadUi
@@ -37,6 +38,11 @@ class RAEditWidget(QWidget):
         loadUi(ui_file, self, {'RAEditGraphicsView': RAEditGraphicsView})
 
         self.send_button.clicked[bool].connect(self._handle_send_clicked)
+
+        self.modeButtonA.clicked[bool].connect(self._handle_modeA_clicked)
+        self.modeButtonB.clicked[bool].connect(self._handle_modeB_clicked)
+        self.modeButtonC.clicked[bool].connect(self._handle_modeC_clicked)
+
         self.rbutton0.clicked[bool].connect(self._r0_clicked)
         self.rbutton1.clicked[bool].connect(self._r1_clicked)
         self.rbutton2.clicked[bool].connect(self._r2_clicked)
@@ -81,7 +87,7 @@ class RAEditWidget(QWidget):
         print('_handle_send_clicked: %s'%(checked))
         self._counter = self._counter + 1
 
-        srv = rospy.ServiceProxy('robot_assembler/service_command', EusCommand)
+        srv = rospy.ServiceProxy('robot_assembler/command/service_command', EusCommand)
         #com = EusCommand()
         #com.command = self.command_text.toPlainText()
         try:
@@ -89,33 +95,52 @@ class RAEditWidget(QWidget):
         except rospy.ServiceException, e:
             self.showError('Failed to call')
 
+    def _handle_modeA_clicked(self, checked):
+        print('_mode_view_clicked: %s'%(checked))
+        self.buttonCallbackImpl('robot_assembler/command/view_mode_view')
+
+    def _handle_modeB_clicked(self, checked):
+        print('_mode_model_clicked: %s'%(checked))
+        self.buttonCallbackImpl('robot_assembler/command/view_mode_model')
+
+    def _handle_modeC_clicked(self, checked):
+        print('_mode_design_clicked: %s'%(checked))
+        self.buttonCallbackImpl('robot_assembler/command/view_mode_design')
+
     def _r0_clicked(self, checked):
         ## fixed-point
-        print('r0 clicked')
+        print('gui : fixed point clicked')
         self.command_name.setText('command(fixed point):')
-        self.buttonCallbackImpl('robot_assembler/select_fixedpoint')
+        self.buttonCallbackImpl('robot_assembler/command/select_fixedpoint')
         self._mode = 'fixed-point'
 
     def _r1_clicked(self, checked):
         ## actuator
-        print('r1 clicked')
+        print('gui : actuator clicked')
         self.command_name.setText('command(actuator):')
-        self.buttonCallbackImpl('robot_assembler/select_actuator')
+        self.buttonCallbackImpl('robot_assembler/command/select_actuator')
         self._mode = 'actuator'
 
     def _r2_clicked(self, checked):
         ## parts / not implemented
-        print('r2 clicked')
+        print('gui : parts clicked')
         self.command_name.setText('command(parts):')
-        self.buttonCallbackImpl('robot_assembler/select_parts')
+        self.buttonCallbackImpl('robot_assembler/command/select_parts')
         self._mode = 'parts'
 
-    def buttonCallbackImpl(self, service_name):
-        srv = rospy.ServiceProxy(service_name, Empty)
-        try:
-            srv()
-        except rospy.ServiceException, e:
-            self.showError("Failed to call %s" % service_name)
+    def buttonCallbackImpl(self, service_name, checked = None):
+        if checked == None:
+            srv = rospy.ServiceProxy(service_name, Empty)
+            try:
+                srv()
+            except rospy.ServiceException, e:
+                self.showError("Failed to call %s" % service_name)
+        else:
+            srv = rospy.ServiceProxy(service_name, SetBool)
+            try:
+                srv()
+            except rospy.ServiceException, e:
+                self.showError("Failed to call %s" % service_name)
 
     def showError(self, message):
         QMessageBox.about(self, "ERROR", message)

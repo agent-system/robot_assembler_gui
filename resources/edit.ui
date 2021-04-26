@@ -170,7 +170,130 @@
     </item>
    </layout>
   </widget>
+  <widget class="QToolButton" name="modeButtonA">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>48</width>
+     <height>48</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>move48gray.png</normaloff>
+     <normalon>move48.png</normalon>move48gray.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>44</width>
+     <height>44</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="autoRaise">
+    <bool>false</bool>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">modebuttonGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QToolButton" name="modeButtonB">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>140</y>
+     <width>48</width>
+     <height>48</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>select48gray.png</normaloff>
+     <normalon>select48.png</normalon>select48gray.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>44</width>
+     <height>44</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="autoRaise">
+    <bool>false</bool>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">modebuttonGroup</string>
+   </attribute>
+  </widget>
+  <widget class="QToolButton" name="modeButtonC">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>140</y>
+     <width>48</width>
+     <height>48</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>modify48gray.png</normaloff>
+     <normalon>modify48.png</normalon>modify48gray.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>44</width>
+     <height>44</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="autoRaise">
+    <bool>false</bool>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">modebuttonGroup</string>
+   </attribute>
+  </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="modebuttonGroup"/>
+ </buttongroups>
 </ui>
