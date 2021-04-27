@@ -46,6 +46,7 @@ class RAEditWidget(QWidget):
         self.rbutton0.clicked[bool].connect(self._r0_clicked)
         self.rbutton1.clicked[bool].connect(self._r1_clicked)
         self.rbutton2.clicked[bool].connect(self._r2_clicked)
+        self.rbutton3.clicked[bool].connect(self._r3_clicked)
 
         self._counter = 0
         self._mode = None
@@ -122,11 +123,18 @@ class RAEditWidget(QWidget):
         self._mode = 'actuator'
 
     def _r2_clicked(self, checked):
-        ## parts / not implemented
+        ## parts
         print('gui : parts clicked')
         self.command_name.setText('command(parts):')
         self.buttonCallbackImpl('robot_assembler/command/select_parts')
         self._mode = 'parts'
+
+    def _r3_clicked(self, checked):
+        ## link / not implemented
+        print('gui : link clicked')
+        self.command_name.setText('command(link):')
+        self.buttonCallbackImpl('robot_assembler/command/select_link')
+        self._mode = 'link'
 
     def buttonCallbackImpl(self, service_name, checked = None):
         if checked == None:
