@@ -312,6 +312,19 @@
     <string notr="true">modebuttonGroup</string>
    </attribute>
   </widget>
+  <widget class="QPushButton" name="openfile">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>156</y>
+     <width>99</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OpenFile</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

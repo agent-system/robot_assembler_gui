@@ -48,6 +48,8 @@ class RAEditWidget(QWidget):
         self.rbutton2.clicked[bool].connect(self._r2_clicked)
         self.rbutton3.clicked[bool].connect(self._r3_clicked)
 
+        self.openfile.clicked[bool].connect(self._openfile_clicked)
+
         self._counter = 0
         self._mode = None
         ## click rbutton0 ...
@@ -135,6 +137,11 @@ class RAEditWidget(QWidget):
         self.command_name.setText('command(link):')
         self.buttonCallbackImpl('robot_assembler/command/select_link')
         self._mode = 'link'
+
+    def _openfile_clicked(self, checked):
+        (fname, ffilter) = QFileDialog.getOpenFileName(self, "Open roboasm", "/tmp",
+                                               "roboasm Files (*.roboasm.l)")
+        print fname
 
     def buttonCallbackImpl(self, service_name, checked = None):
         if checked == None:
